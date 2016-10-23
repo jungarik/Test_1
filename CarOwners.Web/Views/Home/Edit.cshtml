@@ -1,0 +1,51 @@
+﻿@model CarOwners.Domain.Entities.Owner
+
+@{
+    ViewBag.Title = "EditOwner";
+    Layout = "~/Views/_LayoutMain.cshtml";
+}
+<h2>Edit Owner</h2>
+@using (Html.BeginForm("Edit", "Home"))
+{
+    <table>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+            <th>@Html.DisplayNameFor(model => model.LastName)</th>
+            <th>@Html.DisplayNameFor(model => model.Birthday)</th>
+            <th>@Html.DisplayNameFor(model => model.Expirience)</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(model => model.FirstName)</td>
+            <td>@Html.EditorFor(model => model.LastName)</td>
+            <td>@Html.EditorFor(model => model.Birthday)</td>
+            <td>@Html.EditorFor(model => model.Expirience)</td>
+        </tr>
+    </table>
+    <h4>Edit Car</h4>
+    <a href="" id="addCar">Add car</a>
+    <table id="listCar">
+       @Html.Partial("_Add")
+    </table>
+        <input type="submit" value="Save" />
+        @Html.ActionLink("Cancel and return to list", "Index")
+}
+
+            <script type="text/javascript">
+                $(function () {
+                    $('#addCar').click(function () {
+                        // получаем выбранный id
+                        $.ajax({
+                            type: 'GET',
+                            url: '@Url.Action("Add")/',
+                            success: function (data) {
+                                // заменяем содержимое присланным частичным представлением
+                                $('#listCar').html(data);
+
+                            }
+
+                        });
+                        return false;
+                    })
+                })
+            </script>

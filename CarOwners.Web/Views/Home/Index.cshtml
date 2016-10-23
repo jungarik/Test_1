@@ -1,0 +1,55 @@
+﻿
+@model IEnumerable<CarOwners.Domain.Entities.Owner>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_LayoutMain.cshtml";
+}
+
+<h2>Index</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Id)</th>
+        <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+        <th>@Html.DisplayNameFor(model => model.LastName)</th>
+        <th>@Html.DisplayNameFor(model => model.Birthday)</th>
+        <th>@Html.DisplayNameFor(model => model.Expirience)</th>
+        <th>@Html.DisplayNameFor(model => model.Cars)</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Id)</td>
+            <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+            <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+            <td>@Html.DisplayFor(modelItem => item.Birthday)</td>
+            <td>@Html.DisplayFor(modelItem => item.Expirience)</td>
+            <td>
+                <table>
+                    @foreach (var itemCar in item.Cars)
+                    {
+
+                        <tr>
+                            <td>@Html.DisplayFor(modelasd => itemCar.Name)</td>
+                            <td>@Html.DisplayFor(modelasd => itemCar.CarModel)</td>
+                            <td>@Html.DisplayFor(modelasd => itemCar.Price)</td>
+                            <td>@Html.DisplayFor(modelasd => itemCar.Year)</td>
+                        </tr>
+
+                    }
+                </table>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id})
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>
+
+

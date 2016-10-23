@@ -1,0 +1,12 @@
+E:\lessons\MVC\Test\CarOwners.Domain\bin\Debug\CarOwners.Domain.dll.config
+E:\lessons\MVC\Test\CarOwners.Domain\bin\Debug\CarOwners.Domain.dll
+E:\lessons\MVC\Test\CarOwners.Domain\bin\Debug\CarOwners.Domain.pdb
+E:\lessons\MVC\Test\CarOwners.Domain\bin\Debug\EntityFramework.dll
+E:\lessons\MVC\Test\CarOwners.Domain\bin\Debug\EntityFramework.SqlServer.dll
+E:\lessons\MVC\Test\CarOwners.Domain\bin\Debug\EntityFramework.xml
+E:\lessons\MVC\Test\CarOwners.Domain\bin\Debug\EntityFramework.SqlServer.xml
+E:\lessons\MVC\Test\CarOwners.Domain\obj\Debug\CarOwners.Domain.csprojResolveAssemblyReference.cache
+E:\lessons\MVC\Test\CarOwners.Domain\obj\Debug\CarOwners.Domain.dll
+E:\lessons\MVC\Test\CarOwners.Domain\obj\Debug\CarOwners.Domain.pdb
+E:\lessons\MVC\Test\CarOwners.Domain\bin\Debug\System.Web.Mvc.dll
+E:\lessons\MVC\Test\CarOwners.Domain\bin\Debug\System.Web.Mvc.xml

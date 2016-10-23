@@ -1,0 +1,16 @@
+﻿@model CarOwners.Domain.Entities.Owner
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/_LayoutMain.cshtml";
+}
+
+<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.EditorForModel()
+    Html.RenderPartial("AddCar");
+    <input type="submit" value="Save"/>
+    @Html.ActionLink("Cancel and return to list", "Index")
+}
+

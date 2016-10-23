@@ -1,0 +1,23 @@
+﻿@model CarOwners.Domain.Entities.Owner
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().Name)</th>
+        <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().Price)</th>
+        <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().Year)</th>
+        <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().Type)</th>
+        <th></th>
+    </tr>
+
+    @for (int i = 0; i < Model.Cars.ToArray().Length; i++)
+    {
+        <tr>
+            @*<td>@Html.EditorFor(model => model.Cars.First(p => p.Id == c.Id ).Name)</td>
+                <td>@Html.EditorFor(model => model.Cars.First(p => p.Id == c.Id).Price)</td>
+                <td>@Html.EditorFor(model => model.Cars.First(p => p.Id == c.Id).Year)</td>*@
+            <td>@Html.EditorFor(model => Model.Cars.ToList()[i].Id)</td>
+            <td>@Html.EditorFor(model => Model.Cars.ToList()[i].Name)</td>
+            <td>@Html.EditorFor(model => Model.Cars.ToList()[i].CarModel)</td>
+            <td>@Html.EditorFor(model => Model.Cars.ToList()[i].Price)</td>
+            <td>@Html.EditorFor(model => Model.Cars.ToList()[i].Year)</td>
+            <td>@*@Html.ActionLink("Delete", "Delete", new { id = c.Id })*@</td>
+        </tr>
+    }
