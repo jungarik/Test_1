@@ -1,0 +1,52 @@
+﻿@model CarOwners.Domain.Entities.Owner
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/_LayoutMain.cshtml";
+}
+
+<h2>Edit</h2>
+@using (Html.BeginForm("Edit", "Owners"))
+{
+    <table>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+            <th>@Html.DisplayNameFor(model => model.LastName)</th>
+            <th>@Html.DisplayNameFor(model => model.Birthday)</th>
+            <th>@Html.DisplayNameFor(model => model.Expirience)</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(model => model.FirstName)</td>
+            <td>@Html.EditorFor(model => model.LastName)</td>
+            <td>@Html.EditorFor(model => model.Birthday)</td>
+            <td>@Html.EditorFor(model => model.Expirience)</td>
+        </tr>
+    </table>
+    <h2>Owner's cars</h2>
+    <table class="table">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().Name)</th>
+            <td>@Html.DisplayFor(model => model.Cars.FirstOrDefault().CarModel)</td>
+            <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().Price)</th>
+            <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().Year)</th>
+            <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().TypeId)</th>
+            <th></th>
+        </tr>
+
+        @foreach (var c in Model.Cars)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => c.Name)</td>
+                <td>@Html.DisplayFor(model => c.CarModel)</td>
+                <td>@Html.DisplayFor(model => c.Price)</td>
+                <td>@Html.DisplayFor(model => c.Year)</td>
+                <td>@Html.DisplayFor(model => c.TypeId)</td>
+                <td>@Html.ActionLink("Delete", "Delete", new { id = c.Id })</td>
+            </tr>
+        }
+    </table>
+    @*@Html.DropDownList("State", ViewBag.States as SelectList, new { id = "state" })*@
+    <input type="submit" value="Save" />
+    @Html.ActionLink("Cancel and return to list", "Index")
+}

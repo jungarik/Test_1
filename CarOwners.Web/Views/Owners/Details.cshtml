@@ -1,0 +1,45 @@
+﻿@model CarOwners.Domain.Entities.Owner
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/_LayoutMain.cshtml";
+}
+
+<h2>Details</h2>
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+        <th>@Html.DisplayNameFor(model => model.LastName)</th>
+        <th>@Html.DisplayNameFor(model => model.Birthday)</th>
+        <th>@Html.DisplayNameFor(model => model.Expirience)</th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>@Html.DisplayFor(model => model.FirstName)</td>
+        <td>@Html.DisplayFor(model => model.LastName)</td>
+        <td>@Html.DisplayFor(model => model.Birthday)</td>
+        <td>@Html.DisplayFor(model => model.Expirience)</td>
+    </tr>
+</table>
+<h2>Owner's cars</h2>
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().Name)</th>
+        <td>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().CarModel)</td>
+        <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().Price)</th>
+        <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().Year)</th>
+        <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().TypeId)</th>
+        <th></th>
+    </tr>
+
+    @foreach (var c in Model.Cars)
+    {
+        <tr>
+            <td>@Html.DisplayFor(model => c.Name)</td>
+            <td>@Html.DisplayFor(model => c.CarModel)</td>
+            <td>@Html.DisplayFor(model => c.Price)</td>
+            <td>@Html.DisplayFor(model => c.Year)</td>
+            <td>@Html.DisplayFor(model => c.TypeId)</td>
+        </tr>
+    }
+</table>
