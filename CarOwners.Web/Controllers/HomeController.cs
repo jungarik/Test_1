@@ -95,7 +95,6 @@ namespace CarOwners.Web.Controllers
                     //Если была добавлена новая машина создать ее в базе
                     if (cars.Last().Id == 0)
                     {
-                        cars.Last().Id = 10;
                         unitOfWork.Cars.Create(cars.Last());
                         unitOfWork.Save();
                         owner.Cars = cars.ToList();
