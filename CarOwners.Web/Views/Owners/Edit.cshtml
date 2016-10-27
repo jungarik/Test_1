@@ -23,7 +23,11 @@
             <td>@Html.EditorFor(model => model.Expirience)</td>
         </tr>
     </table>
-    <h2>Owner's cars</h2>
+    if(Model.Cars.ToArray().Length == 0)
+    {
+        ViewBag.OwnerCars = "Owner does not have cars yet. Click Add car and chose car!";
+    }
+    <h2>@ViewBag.OwnerCars</h2>
     <table class="table">
         <tr>
             <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().Name)</th>
@@ -48,5 +52,5 @@
     </table>
     @*@Html.DropDownList("State", ViewBag.States as SelectList, new { id = "state" })*@
     <input type="submit" value="Save" />
-    @Html.ActionLink("Cancel and return to list", "Index")
+    @Html.ActionLink("Cancel and return to list", "List")
 }

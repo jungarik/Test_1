@@ -26,11 +26,12 @@ namespace CarOwners.Web.Controllers
         public ActionResult Details(int id = 1)
         {
             Owner owner = unitOfWork.Owners.GetAll().Include(o => o.Cars).FirstOrDefault(o => o.Id == id);
-            return View(owner);
+            return View(owner);   
         }
         public ActionResult Edit(int id = 1)
         {
             Owner owner = unitOfWork.Owners.GetAll().Include(o =>o.Cars).FirstOrDefault(o => o.Id == id);
+            ViewBag.OwnerCars = "Cars";
             //Owner owner = unitOfWork.Owners.Get(id);
             if (owner == null)
                 return HttpNotFound();
@@ -42,40 +43,24 @@ namespace CarOwners.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                //if (owner.Id == 0)
-                //{
-                //    if (cars != null)
-                //    {
-                //        foreach (var car in cars)
-                //        {
-                //            unitOfWork.Cars.Create(car);
-                //        }
-                //        owner.Cars = cars.ToList<Car>();
-                //    }
-                //    unitOfWork.Owners.Create(owner);
-                //    unitOfWork.Save();
-                //    return RedirectToAction("Index");
-                //}
-                //else
+                if (owner.Id == 0)
                 {
-                    //Если была добавлена новая машина создать ее в базе
-                    if (cars.Last().Id == 0)
-                    {
-                        unitOfWork.Cars.Create(cars.Last());
-                        unitOfWork.Save();
-                        owner.Cars = cars.ToList();
-                    }
-
-                    unitOfWork.Owners.Update(owner);
-                    foreach (var c in cars)
-                    {
-                        unitOfWork.Cars.Update(c);
-                    }
+                    unitOfWork.Owners.Create(owner);
                     unitOfWork.Save();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("List");
+                }
+                else
+                {
+                    unitOfWork.Owners.Update(owner);
+                    unitOfWork.Save();
+                    return RedirectToAction("List");
                 }
             }
             return View(owner);
+        }
+        public ViewResult Create()
+        {
+            return View("Edit", new Owner());
         }
     }
 }
