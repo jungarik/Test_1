@@ -29,18 +29,25 @@ namespace CarOwners.Web.Controllers
             Car car = unitOfWork.Cars.GetAll().Include(c => c.Owners).FirstOrDefault(c => c.Id == id);
             return View(car);
         }
+        [HttpGet]
         public ActionResult Edit(int id = 1)
         {
-            Car car = unitOfWork.Cars.GetAll().Include(c => c.Owners).FirstOrDefault(c => c.Id == id);
-            ViewBag.CarOwners = "Owners:";
-            //Owner owner = unitOfWork.Owners.Get(id);
+            Car car = unitOfWork.Cars.GetAll().Include(o => o.Owners).FirstOrDefault(o => o.Id == id);
+            ViewBag.OwnerCars = "Owners:";
+
+            IList<SelectListItem> selectList = new List<SelectListItem>();
+            foreach (var o in unitOfWork.Owners.GetAll())
+            {
+                selectList.Add(new SelectListItem { Value = o.Id.ToString(), Text = o.ToString() });
+            }
+            ViewBag.AllOwners = selectList;
             if (car == null)
                 return HttpNotFound();
             return View(car);
         }
 
         [HttpPost]
-        public ActionResult Edit(Car car, Owner[] owners)
+        public ActionResult Edit(Car car)
         {
             if (ModelState.IsValid)
             {
@@ -59,9 +66,52 @@ namespace CarOwners.Web.Controllers
             }
             return View(car);
         }
-        public ViewResult Create()
+
+        public ActionResult Create()
         {
-            return View("Edit", new Car());
+            return View(new Car());
+        }
+
+        [HttpPost]
+        public ActionResult Create(Car car)
+        {
+            unitOfWork.Cars.Create(car);
+            unitOfWork.Save();
+            var addedCar = unitOfWork.Cars.GetAll().OrderByDescending(o => o.Id).FirstOrDefault();
+            return RedirectToAction("Edit", new { id = addedCar.Id });
+        }
+
+        [HttpPost]
+        public ActionResult Add(int OwnerId, int id)
+        {
+            Owner owner = unitOfWork.Owners.Get(OwnerId);
+            Car newOwnerCars = unitOfWork.Cars.Get(id);
+            newOwnerCars.Owners.Add(owner);
+            unitOfWork.Cars.Update(newOwnerCars);
+            unitOfWork.Save();
+            return RedirectToAction("Edit", new { id = id });
+        }
+
+        public ActionResult Delete(int id = 1, int ItemId = 0)
+        {
+            if (ItemId != 0)
+            {
+                //Car car = unitOfWork.Cars.Get(CarId);
+                Car newOwnerCar = unitOfWork.Cars.GetAll().Include(c => c.Owners).FirstOrDefault(o => o.Id == id);
+                //newCarOwner.Cars.Clear();
+                Owner owner = unitOfWork.Owners.Get(ItemId);
+                newOwnerCar.Owners.Remove(owner);
+                unitOfWork.Cars.Update(newOwnerCar);
+                unitOfWork.Save();
+                return RedirectToAction("Edit", new { id = id });
+            }
+            else
+            {
+                unitOfWork.Cars.Delete(id);
+                unitOfWork.Save();
+                return RedirectToAction("List");
+            }
+
         }
     }
 }

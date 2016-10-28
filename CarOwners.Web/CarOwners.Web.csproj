@@ -179,8 +179,6 @@
     <Content Include="Views\_LayoutMain.cshtml" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Edit.cshtml" />
-    <Content Include="Views\Home\_Add.cshtml" />
     <Content Include="Views\Owners\List.cshtml" />
     <Content Include="Views\_CarsList.cshtml" />
     <Content Include="Views\Owners\Details.cshtml" />
@@ -188,6 +186,8 @@
     <Content Include="Views\Cars\List.cshtml" />
     <Content Include="Views\Cars\Edit.cshtml" />
     <Content Include="Views\Owners\Create.cshtml" />
+    <Content Include="Views\Cars\Create.cshtml" />
+    <Content Include="Views\Cars\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

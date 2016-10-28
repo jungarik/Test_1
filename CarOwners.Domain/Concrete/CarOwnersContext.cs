@@ -14,7 +14,7 @@ namespace CarOwners.Domain.Concrete
         { }
         public DbSet<Owner> Owners { get; set; }
         public DbSet<Car> Cars { get; set; }
-        public DbSet<CarType> Types { get; set; }
+        //public DbSet<CarType> Types { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

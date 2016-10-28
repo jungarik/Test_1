@@ -14,9 +14,11 @@ namespace CarOwners.Domain.Entities
         public string CarModel { get; set; }
         public string Name { get; set; }
 
-        public int? TypeId { get; set; }
+        //public int? TypeId { get; set; }
 
-        public CarType Type { get; set; }
+        //public CarType Type { get; set; }
+
+        public string Type { get; set; }
 
         public decimal Price { get; set; }
         public int Year { get; set; }
@@ -33,15 +35,15 @@ namespace CarOwners.Domain.Entities
         }
     }
 
-    public class CarType
-    {
-        [HiddenInput(DisplayValue = false)]
-        public int Id { get; set; }
-        public string TypeName { get; set; }
-        public ICollection<Car> Cars { get; set; }
-        public CarType()
-        {
-            Cars = new List<Car>();
-        }
-    }
+    //public class CarType
+    //{
+    //    [HiddenInput(DisplayValue = false)]
+    //    public int Id { get; set; }
+    //    public string TypeName { get; set; }
+    //    public ICollection<Car> Cars { get; set; }
+    //    public CarType()
+    //    {
+    //        Cars = new List<Car>();
+    //    }
+    //}
 }

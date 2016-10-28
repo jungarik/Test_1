@@ -19,7 +19,7 @@ namespace CarOwners.Web.Controllers
         // GET: Owners
         public ActionResult List()
         {
-            var owners = unitOfWork.Owners.GetAll().Include(o => o.Cars).ToList();
+            var owners = unitOfWork.Owners.GetAll().Include(o => o.Cars);
             return View(owners);
         }
 

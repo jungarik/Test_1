@@ -20,5 +20,9 @@ namespace CarOwners.Domain.Entities
         {
             Cars = new List<Car>();
         }
+        public override string ToString()
+        {
+            return Id.ToString() + " " + FirstName + " " + LastName + " " + Birthday + " " + Expirience.ToString();
+        }
     }
 }

@@ -1,0 +1,35 @@
+﻿@model CarOwners.Domain.Entities.Car
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/_LayoutMain.cshtml";
+}
+
+<h2>Create Car</h2>
+@using (Html.BeginForm("Edit", "Cars", FormMethod.Post, new { @class = "form-inline" }))
+{
+    @Html.HiddenFor(model => model.Id)
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.Name) <br />
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.CarModel)<br />
+        @Html.EditorFor(model => model.CarModel, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.Price)<br />
+        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.Year)<br />
+        @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.Type)<br />
+        @Html.DropDownList("Type", new SelectList(new string[] { "Легковая", "Грузовая" }), new { @class = "form-control" })
+    </div>
+    <br /><br />
+    <input class="btn btn-success" type="submit" value="Create" />
+    @Html.ActionLink("Cancel and return to list", "List")
+}

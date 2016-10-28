@@ -6,11 +6,29 @@
 }
 
 <h2>Create</h2>
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Owners", FormMethod.Post, new { @class = "form-inline" }))
 {
-    @Html.EditorForModel()
-    <input type="submit" value="Creat" />
-    @Html.ActionLink("Cancel and return to list", "Index")
+    @Html.HiddenFor(model => model.Id)
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.FirstName) <br />
+        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.LastName)<br />
+        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.Birthday)<br />
+        @Html.EditorFor(model => model.Birthday, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.Expirience)<br />
+        @Html.EditorFor(model => model.Expirience, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <br />
+    <br />
+    <input class="btn btn-success" type="submit" value="Create" />
+         @Html.ActionLink("Cancel and return to list", "List")
 }
 
 

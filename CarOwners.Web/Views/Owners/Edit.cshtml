@@ -5,8 +5,8 @@
     Layout = "~/Views/_LayoutMain.cshtml";
 }
 
-<h2>Edit</h2>
-@using (Html.BeginForm("Edit", "Owners"))
+<h2>Edit Owner</h2>
+@using (Html.BeginForm("Edit", "Owners", new { @class = "form-control" }))
 {
     <table class="table">
         <tr>
@@ -14,16 +14,18 @@
             <th>@Html.DisplayNameFor(model => model.LastName)</th>
             <th>@Html.DisplayNameFor(model => model.Birthday)</th>
             <th>@Html.DisplayNameFor(model => model.Expirience)</th>
-            <th></th>
         </tr>
         <tr>
             @Html.HiddenFor(model => model.Id)
-            <td>@Html.EditorFor(model => model.FirstName)</td>
-            <td>@Html.EditorFor(model => model.LastName)</td>
-            <td>@Html.EditorFor(model => model.Birthday)</td>
-            <td>@Html.EditorFor(model => model.Expirience)</td>
+            <td>@Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })</td>
+            <td>@Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })</td>
+            <td>@Html.EditorFor(model => model.Birthday, new { htmlAttributes = new { @class = "form-control" } })</td>
+            <td>@Html.EditorFor(model => model.Expirience, new { htmlAttributes = new { @class = "form-control" } } )</td>
         </tr>
     </table>
+    <input class="btn btn-success" type="submit" value="Save" />
+    @Html.ActionLink("Cancel and return to list", "List")
+
     if (Model.Id != 0)
     {
         if (Model.Cars.ToArray().Length == 0)
@@ -37,7 +39,7 @@
                 <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().CarModel)</th>
                 <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().Price)</th>
                 <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().Year)</th>
-                <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().TypeId)</th>
+                <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().Type)</th>
                 <th></th>
             </tr>
 
@@ -48,21 +50,22 @@
                     <td>@Html.DisplayFor(model => c.CarModel)</td>
                     <td>@Html.DisplayFor(model => c.Price)</td>
                     <td>@Html.DisplayFor(model => c.Year)</td>
-                    <td>@Html.DisplayFor(model => c.TypeId)</td>
+                    <td>@Html.DisplayFor(model => c.Type)</td>
                     <td>@Html.ActionLink("Delete", "Delete",
                                             new { id = Model.Id, ItemId = c.Id },
-                                            new { @class = "btn btn-default" })
+                                            new { @class = "btn btn-danger" })
                     </td>
                 </tr>
             }
         </table>
     }
-    <input class="btn btn-default" type="submit" value="Save" />
-    @Html.ActionLink("Cancel and return to list", "List")
 }
-@using (Html.BeginForm("Add", "Owners"))
+@using (Html.BeginForm("Add", "Owners", FormMethod.Post, new { @class = "form-inline" }))
 {
-    @Html.DropDownList("CarId", ViewBag.AllCars as IEnumerable<SelectListItem>)
-    @Html.HiddenFor(model => model.Id)
-    <input class="btn btn-default" type="submit" value="Add" />
+    <h3>Add car</h3>
+    <div class="form-group">
+        @Html.DropDownList("CarId", ViewBag.AllCars as IEnumerable<SelectListItem>, new { @class = "form-control" })
+        @Html.HiddenFor(model => model.Id)
+    </div>
+    <input class="btn btn-primary" type="submit" value="Add" />
 }
