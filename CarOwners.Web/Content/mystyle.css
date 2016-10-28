@@ -1,0 +1,6 @@
+﻿body {
+}
+li a:selected{
+    background-color: aqua;
+    color:black;
+}

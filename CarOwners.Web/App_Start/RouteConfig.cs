@@ -14,6 +14,12 @@ namespace CarOwners.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "DeleteItem",
+                url: "{controller}/{action}/{id}/{ItemId}",
+                defaults: new { id = UrlParameter.Optional, ItemId = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

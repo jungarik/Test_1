@@ -7,9 +7,9 @@
 
 <h2>List</h2>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", new { @class = "btn btn-default" })
 </p>
-<table>
+<table class="table">
     <tr>
         <th>@Html.DisplayNameFor(model => model.Id)</th>
         <th>@Html.DisplayNameFor(model => model.FirstName)</th>
@@ -28,9 +28,9 @@
             <td>@Html.DisplayFor(modelItem => item.Birthday)</td>
             <td>@Html.DisplayFor(modelItem => item.Expirience)</td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-default" })
             </td>
         </tr>
     }
