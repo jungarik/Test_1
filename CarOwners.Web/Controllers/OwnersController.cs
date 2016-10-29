@@ -31,21 +31,16 @@ namespace CarOwners.Web.Controllers
         [HttpGet]
         public ActionResult Edit(int id = 1)
         {
-            Owner owner;
-            if (id == 0)
-            {
-                owner = new Owner();
-            }
-            else
-            { 
-                owner = unitOfWork.Owners.GetAll().Include(o =>o.Cars).FirstOrDefault(o => o.Id == id);
-            }
+            Owner owner = unitOfWork.Owners.GetAll().Include(o =>o.Cars).FirstOrDefault(o => o.Id == id);
             ViewBag.OwnerCars = "Cars:";
 
             IList<SelectListItem> selectList = new List<SelectListItem>();
             foreach (var c in unitOfWork.Cars.GetAll())
             {
-                selectList.Add(new SelectListItem { Value = c.Id.ToString(), Text = c.ToString() });
+                if (owner.Cars.Contains<Car>(c) == false)
+                {
+                    selectList.Add(new SelectListItem { Value = c.Id.ToString(), Text = c.ToString() });
+                }
             }
             ViewBag.AllCars =selectList;
             if (owner == null)

@@ -38,7 +38,10 @@ namespace CarOwners.Web.Controllers
             IList<SelectListItem> selectList = new List<SelectListItem>();
             foreach (var o in unitOfWork.Owners.GetAll())
             {
-                selectList.Add(new SelectListItem { Value = o.Id.ToString(), Text = o.ToString() });
+                if (car.Owners.Contains<Owner>(o) == false)
+                {
+                    selectList.Add(new SelectListItem { Value = o.Id.ToString(), Text = o.ToString() });
+                }
             }
             ViewBag.AllOwners = selectList;
             if (car == null)

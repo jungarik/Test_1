@@ -35,6 +35,32 @@
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
             </td>
         </tr>
+        <tr id="@item.Id">
+            <td colspan="7">
+                <div>
+                    <table class="table">
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Owners.FirstOrDefault().Id)</td>
+                            <td>@Html.DisplayNameFor(model => model.Owners.FirstOrDefault().FirstName)</td>
+                            <td>@Html.DisplayNameFor(model => model.Owners.FirstOrDefault().LastName)</td>
+                            <td>@Html.DisplayNameFor(model => model.Owners.FirstOrDefault().Birthday)</td>
+                            <td>@Html.DisplayNameFor(model => model.Owners.FirstOrDefault().Expirience)</td>
+                        </tr>
+
+                        @foreach (var o in item.Owners)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(model => o.Id)</td>
+                                <td>@Html.DisplayFor(model => o.FirstName)</td>
+                                <td>@Html.DisplayFor(model => o.LastName)</td>
+                                <td>@Html.DisplayFor(model => o.Birthday)</td>
+                                <td>@Html.DisplayFor(model => o.Expirience)</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </td>
+        </tr>
     }
 </table>
 

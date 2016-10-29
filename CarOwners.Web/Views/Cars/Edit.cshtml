@@ -48,7 +48,10 @@
                 <td>@Html.DisplayFor(model => c.LastName)</td>
                 <td>@Html.DisplayFor(model => c.Birthday)</td>
                 <td>@Html.DisplayFor(model => c.Expirience)</td>
-                <td>@Html.ActionLink("Delete", "Delete", new { id = c.Id }, new { @class = "btn btn-danger" })</td>
+                <td>@Html.ActionLink("Delete", "Delete", 
+                                        new { id = Model.Id, ItemId = c.Id }, 
+                                        new { @class = "btn btn-danger" })
+                </td>
             </tr>
         }
     </table>
