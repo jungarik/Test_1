@@ -8,6 +8,7 @@
 <h2>Create Car</h2>
 @using (Html.BeginForm("Edit", "Cars", FormMethod.Post, new { @class = "form-inline" }))
 {
+    @Html.ValidationSummary();
     @Html.HiddenFor(model => model.Id)
     <div class="form-group">
         @Html.DisplayNameFor(model => model.Name) <br />

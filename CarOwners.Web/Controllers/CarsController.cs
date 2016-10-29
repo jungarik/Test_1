@@ -68,7 +68,7 @@ namespace CarOwners.Web.Controllers
                     return RedirectToAction("List");
                 }
             }
-            return View(car);
+            return View("Create", car);
         }
 
         public ActionResult Create()
