@@ -1,0 +1,25 @@
+﻿@model CarOwners.Domain.Entities.Car
+<td colspan="7">
+    <div class="col-md-10">
+        <h5>Owners</h5>
+        <table class="table table-striped">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Owners.FirstOrDefault().Id)</th>
+                <th>@Html.DisplayNameFor(model => model.Owners.FirstOrDefault().FirstName)</th>
+                <th>@Html.DisplayNameFor(model => model.Owners.FirstOrDefault().LastName)</th>
+                <th>@Html.DisplayNameFor(model => model.Owners.FirstOrDefault().Birthday)</th>
+                <th>@Html.DisplayNameFor(model => model.Owners.FirstOrDefault().Expirience)</th>
+            </tr>
+            @foreach (var o in Model.Owners)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(model => o.Id)</td>
+                    <td>@Html.DisplayFor(model => o.FirstName)</td>
+                    <td>@Html.DisplayFor(model => o.LastName)</td>
+                    <td>@Html.DisplayFor(model => o.Birthday)</td>
+                    <td>@Html.DisplayFor(model => o.Expirience)</td>
+                </tr>
+            }
+        </table>
+    </div>
+</td>

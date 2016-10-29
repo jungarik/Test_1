@@ -27,7 +27,7 @@ namespace CarOwners.Web.Controllers
         public ActionResult Details(int id = 1)
         {
             Car car = unitOfWork.Cars.GetAll().Include(c => c.Owners).FirstOrDefault(c => c.Id == id);
-            return View(car);
+            return PartialView("_Details", car);
         }
         [HttpGet]
         public ActionResult Edit(int id = 1)

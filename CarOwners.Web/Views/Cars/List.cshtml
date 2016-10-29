@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-primary"} )
 </p>
-<table class="table">
+<table class="table table-condensed">
     <tr>
         <th>@Html.DisplayNameFor(model => model.Id)</th>
         <th>@Html.DisplayNameFor(model => model.Name)</th>
@@ -31,36 +31,36 @@
             <td>@Html.DisplayFor(modelItem => item.Type)</td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-success" })
-                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-default" })
+                <button class="btn btn-default" id="@item.Id" type="submit">Details</button>
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
             </td>
         </tr>
-        <tr id="@item.Id">
-            <td colspan="7">
-                <div>
-                    <table class="table">
-                        <tr>
-                            <td>@Html.DisplayNameFor(model => model.Owners.FirstOrDefault().Id)</td>
-                            <td>@Html.DisplayNameFor(model => model.Owners.FirstOrDefault().FirstName)</td>
-                            <td>@Html.DisplayNameFor(model => model.Owners.FirstOrDefault().LastName)</td>
-                            <td>@Html.DisplayNameFor(model => model.Owners.FirstOrDefault().Birthday)</td>
-                            <td>@Html.DisplayNameFor(model => model.Owners.FirstOrDefault().Expirience)</td>
-                        </tr>
-
-                        @foreach (var o in item.Owners)
-                        {
-                            <tr>
-                                <td>@Html.DisplayFor(model => o.Id)</td>
-                                <td>@Html.DisplayFor(model => o.FirstName)</td>
-                                <td>@Html.DisplayFor(model => o.LastName)</td>
-                                <td>@Html.DisplayFor(model => o.Birthday)</td>
-                                <td>@Html.DisplayFor(model => o.Expirience)</td>
-                            </tr>
-                        }
-                    </table>
-                </div>
-            </td>
+        <tr id="data_@item.Id">            
         </tr>
     }
 </table>
+<script type="text/javascript">
+    $(function () {
+        flag = 0;
+        $('.btn-default').on('click', function (e) {
+            var id_click = e.target.id;
+            if (flag == 0) {
+                flag = 1;
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("Details")/' + id_click,
+                    success: function (data) {
+                        // заменяем содержимое присланным частичным представлением
+                        $('#data_' + id_click).html(data);
+                    }
+                });
+            }
+            else {
+                $('#data_' + id_click).html(" ");
+                flag = 0;
+            }
+            return false;
+        })
+    })
+</script>
 

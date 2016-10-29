@@ -29,11 +29,34 @@
             <td>@Html.DisplayFor(modelItem => item.Expirience)</td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-success" })
-                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-default" })
+                <button class="btn btn-default" id="@item.Id" type="submit">Details</button>
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
             </td>
         </tr>
+        <tr id="data_@item.Id"></tr>
     }
 </table>
-
-
+<script type="text/javascript">
+    $(function () {
+        flag = 0;
+        $('.btn-default').on('click', function (e) {
+            var id_click = e.target.id;
+            if (flag == 0) {
+                flag = 1;
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("Details")/' + id_click,
+                    success: function (data) {
+                        // заменяем содержимое присланным частичным представлением
+                        $('#data_' + id_click).html(data);
+                    }
+                });
+            }
+            else {
+                $('#data_' + id_click).html(" ");
+                flag = 0;
+            }
+            return false;
+        })
+    })
+</script>

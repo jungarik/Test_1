@@ -1,0 +1,28 @@
+﻿@model CarOwners.Domain.Entities.Owner
+<td colspan="7">
+    <div class="col-md-10">
+        <h5><bold>Cars</bold></h5>
+        <table class="table table-striped">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().Id)</th>
+                <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().Name)</th>
+                <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().CarModel)</th>
+                <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().Price)</th>
+                <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().Year)</th>
+                <th>@Html.DisplayNameFor(model => model.Cars.FirstOrDefault().Type)</th>
+            </tr>
+            @foreach (var c in Model.Cars)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(model => c.Id)</td>
+                    <td>@Html.DisplayFor(model => c.Name)</td>
+                    <td>@Html.DisplayFor(model => c.CarModel)</td>
+                    <td>@Html.DisplayFor(model => c.Price)</td>
+                    <td>@Html.DisplayFor(model => c.Year)</td>
+                    <td>@Html.DisplayFor(model => c.Type)</td>
+                </tr>
+            }
+        </table>
+    </div>
+</td>
+

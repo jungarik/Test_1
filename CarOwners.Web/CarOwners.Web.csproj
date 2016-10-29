@@ -186,7 +186,8 @@
     <Content Include="Views\Cars\Edit.cshtml" />
     <Content Include="Views\Owners\Create.cshtml" />
     <Content Include="Views\Cars\Create.cshtml" />
-    <Content Include="Views\Cars\Details.cshtml" />
+    <Content Include="Views\Cars\_Details.cshtml" />
+    <Content Include="Views\Owners\_Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
