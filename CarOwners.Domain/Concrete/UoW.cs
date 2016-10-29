@@ -3,31 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CarOwners.Domain.Abstract;
+using CarOwners.Domain.Entities;
 
 namespace CarOwners.Domain.Concrete
 {
-    public class UoW:IDisposable
+    public class UoW: IUnitOfWork
     {
+        // Агрегация
         private CarOwnersContext db = new CarOwnersContext();
-        private OwnerRepository ownerRepository;
-        private CarRepository carRepository;
+        private IOwnersRepository ownerRepository;
+        private ICarsRepository carRepository;
 
-        public OwnerRepository Owners
+        IRepositoryFactory repoFactory;
+
+        public UoW(IRepositoryFactory repoFactory)
+        {
+            this.repoFactory = repoFactory;
+        }
+
+        public IOwnersRepository Owners
         {
             get
             {
                 if (ownerRepository == null)
-                    ownerRepository = new OwnerRepository(db);
+                    // Агрегация
+                    ownerRepository = repoFactory.CreateOwnersRepository(db);
+                        //new OwnerRepository(db);
                 return ownerRepository;
             }
         }
 
-        public CarRepository Cars
+        public ICarsRepository Cars
         {
             get
             {
                 if (carRepository == null)
-                    carRepository = new CarRepository(db);
+                    carRepository = repoFactory.CreateCarsRepository(db);
                 return carRepository;
             }
         }

@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 using CarOwners.Domain.Entities;
 using CarOwners.Domain.Concrete;
-using System.Data.Entity;
+using CarOwners.Domain.Abstract;
 
 namespace CarOwners.Web.Controllers
 {
     public class CarsController : Controller
     {
-        UoW unitOfWork;
+        IUnitOfWork unitOfWork;
 
-        public CarsController()// Здесь надо использовать DI Ninj
+        public CarsController(IUnitOfWork unitOfWork)// Здесь надо использовать DI Ninj
         {
-            unitOfWork = new UoW();//Вместо этого
+            this.unitOfWork = unitOfWork;//Вместо этого
         }
         // GET: Cars
         public ActionResult List()

@@ -6,15 +6,16 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using CarOwners.Domain.Entities;
 using CarOwners.Domain.Concrete;
+using CarOwners.Domain.Abstract;
 
 namespace CarOwners.Web.Controllers
 {
     public class OwnersController : Controller
     {
-        UoW unitOfWork;
-        public OwnersController()// Здесь надо использовать DI Ninj
+        IUnitOfWork unitOfWork;
+        public OwnersController(IUnitOfWork unitOfWork)// Здесь надо использовать DI Ninj
         {
-            unitOfWork = new UoW();//Вместо этого
+            this.unitOfWork = unitOfWork;
         }
         // GET: Owners
         public ActionResult List()

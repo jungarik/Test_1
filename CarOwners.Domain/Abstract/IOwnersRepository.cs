@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CarOwners.Domain.Entities;
 
 namespace CarOwners.Domain.Abstract
 {
-    public interface IRepository<T> where T : class
+    public interface IOwnersRepository
     {
-        IQueryable<T> GetAll();
-        T Get(int id);
-        void Create(T item);
-        void Update(T item);
+        IQueryable<Owner> GetAll();
+        Owner Get(int id);
+        void Create(Owner item);
+        void Update(Owner item);
         void Delete(int id);
     }
 }

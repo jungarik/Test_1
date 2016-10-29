@@ -52,7 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\ICarsRepository.cs" />
+    <Compile Include="Abstract\IOwnersRepository.cs" />
     <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Abstract\IRepositoryFactory.cs" />
+    <Compile Include="Abstract\IUnitOfWork.cs" />
     <Compile Include="Concrete\CarRepository.cs" />
     <Compile Include="Concrete\CarOwnersContext.cs" />
     <Compile Include="Concrete\OwnerDbInitializer.cs" />

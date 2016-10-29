@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace CarOwners.Domain.Concrete
 {
-    public class CarRepository:IRepository<Car>
+    public class CarRepository:ICarsRepository
     {
         private CarOwnersContext db;
 
