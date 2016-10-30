@@ -15,11 +15,12 @@ namespace CarOwners.Domain.Entities
         [Required(ErrorMessage = "Please enter First Name")]
         public string FirstName { get; set; }
 
-        [Required(ErrorMessage = "Please enter a Last Name")]
+        [Required(ErrorMessage = "Please enter Last Name")]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Invalid date")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Birthday { get; set; }
 
         [Range(1, 50, ErrorMessage = "Invalid expirience")]

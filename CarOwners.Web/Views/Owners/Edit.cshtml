@@ -8,6 +8,7 @@
 <h2>Edit Owner</h2>
 @using (Html.BeginForm("Edit", "Owners", new { @class = "form-control" }))
 {
+    @Html.ValidationSummary();
     <table class="table">
         <tr>
             <th>@Html.DisplayNameFor(model => model.FirstName)</th>
